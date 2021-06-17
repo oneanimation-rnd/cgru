@@ -56,19 +56,25 @@ class wakeonlan(service.service):
             print('Task data:\n%s' % data)
             return
 
-        # Construct command:
-        if self.taskInfo['wdir'] == 'SLEEP':
-            cmd = cgruconfig.VARS['af_render_cmd_wolsleep']
-            cmd += ' --sleep'
+        if render['name'].startswith('aws-'):
+            cmd = '{} {} {}'.format(
+                cgruconfig.VARS['af_aws_render_cmd_wol'],
+                render['address']['ip'],
+                'stop' if self.taskInfo['wdir'] == 'SLEEP' else 'start'
+            )
         else:
-            cmd = cgruconfig.VARS['af_render_cmd_wolwake']
-            cmd += ' --wake'
-        cmd += ' --ip "%s"' % render['address']['ip']
-        cmd += ' --hostname "%s"' % render['name']
+            # Construct command:
+            if self.taskInfo['wdir'] == 'SLEEP':
+                cmd = cgruconfig.VARS['af_render_cmd_wolsleep']
+                cmd += ' --sleep'
+            else:
+                cmd = cgruconfig.VARS['af_render_cmd_wolwake']
+                cmd += ' --wake'
+            cmd += ' --ip "%s"' % render['address']['ip']
+            cmd += ' --hostname "%s"' % render['name']
 
-        for netif in render['netifs']:
-            cmd += ' %s' % netif['mac'].replace(':', '')
+            for netif in render['netifs']:
+                cmd += ' %s' % netif['mac'].replace(':', '')
 
-        # print(cmd)
         # Set task command:
         self.taskInfo['command'] = cmd

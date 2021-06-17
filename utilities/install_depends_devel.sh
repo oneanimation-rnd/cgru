@@ -47,7 +47,7 @@ function redhatArch(){
 	packages="$packages libzip libzip-devel"
 	packages="$packages rpm-build"
 
-	pkg_manager_cmd="yum install"
+	pkg_manager_cmd="yum install -y"
 	pkg_extension=".$ARCHITECTURE"
 }
 

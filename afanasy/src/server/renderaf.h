@@ -58,7 +58,7 @@ public:
 	inline bool isReady() const { return (
 			(m_parent != NULL) &&
 			(isNotSick()) &&
-			(m_state & SOnline) &&
+			((m_state & SOnline) || true == isWOLWaking()) &&
 			(m_priority > 0) &&
 			((findCapacity() < 0) || (m_capacity_used < findCapacity())) &&
 			((int)m_tasks.size() < findMaxTasks()) &&
