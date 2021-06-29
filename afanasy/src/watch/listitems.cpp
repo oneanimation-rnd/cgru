@@ -81,7 +81,7 @@ ListItems::ListItems(QWidget * i_parent, const std::string & i_type):
 	hlayout->addWidget(m_panel_lelf_widget);
 	m_panel_left_layout = new QVBoxLayout();
 	m_panel_lelf_widget->setLayout(m_panel_left_layout);
-	m_panel_lelf_widget->setFixedWidth(100);
+	// m_panel_lelf_widget->setFixedWidth(100);
 	m_panel_left_layout->setAlignment(Qt::AlignTop);
 	m_panel_left_layout->setContentsMargins(0, 5, 0, 5);
 	m_panel_left_layout->setSpacing(5);
