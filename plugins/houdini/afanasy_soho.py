@@ -30,7 +30,8 @@ if submit_afnode is None:
 		'Can\'t find "%s" node specified in "%s"' %
 		(submit_afnode_path, current_afnode.path())
 	)
-if submit_afnode.type().name() != 'afanasy':
+	
+if 'afanasy' not in submit_afnode.type().nameComponents():
 	soho.error(
 		'Node "%s" specified in "%s" is not of "afanasy" type' %
 		(submit_afnode_path, current_afnode.path())

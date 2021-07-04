@@ -65,11 +65,6 @@ for filename in args:
 			except Exception as e:
 				print(str(e))
 				status = 1
-	else:
-		# No such file or directory:
-		print('Error: file(s) to delete not found:')
-		print(filename)
-		status = 1
 
 	# Set exit status to error if it was any:
 	if exit_status == 0 and status != 0:
